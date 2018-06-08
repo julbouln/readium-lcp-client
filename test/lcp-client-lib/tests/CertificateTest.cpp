@@ -33,6 +33,7 @@
 #include "Certificate.h"
 #include "CertificateRevocationList.h"
 #include "EncryptionProfilesManager.h"
+#include "CryptoAlgorithmInterfaces.h"
 #include "public/lcp.h"
 
 namespace lcptest

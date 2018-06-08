@@ -36,7 +36,7 @@ namespace lcptest
 {
     TEST(JsonCanonicalizerTest, CanonicalizeLicenseSuccess)
     {
-        std::fstream mobyDickLicenseFile("..\\..\\..\\test\\lcp-client-lib\\data\\moby-dick-20120118.epub\\META-INF\\license.lcpl");
+        std::fstream mobyDickLicenseFile("../../../test/lcp-client-lib/data/moby-dick-20120118.epub/META-INF/license.lcpl");
         std::string mobyDickLicenseStr(
             (std::istreambuf_iterator<char>(mobyDickLicenseFile)),
             std::istreambuf_iterator<char>()
@@ -49,7 +49,7 @@ namespace lcptest
 
     TEST(JsonCanonicalizerTest, CanonicalizeLicenseNotValid)
     {
-        std::fstream mobyDickLicenseFile("..\\..\\..\\test\\lcp-client-lib\\data\\moby-dick-20120118.epub\\META-INF\\license.lcpl");
+        std::fstream mobyDickLicenseFile("../../../test/lcp-client-lib/data/moby-dick-20120118.epub/META-INF/license.lcpl");
         std::string mobyDickLicenseStr(
             (std::istreambuf_iterator<char>(mobyDickLicenseFile)),
             std::istreambuf_iterator<char>()

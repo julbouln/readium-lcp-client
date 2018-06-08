@@ -137,7 +137,7 @@ int main(int argc, char ** argv)
             "gNBrawNJbGxYeRSVi6/AqZ8tX1g61G0SJ9w=";
 
         TestNetProvider netProvider;
-        TestStorageProvider storageProvider("..\\..\\..\\src\\testing-data\\storage.json");
+        TestStorageProvider storageProvider("../../../src/testing-data/storage.json");
         lcp::DefaultFileSystemProvider fsProvider;
 
         lcp::ILcpService * rawSvcPtr = nullptr;
@@ -151,14 +151,16 @@ int main(int argc, char ** argv)
             return 0;
         }
 
-        std::fstream mobyDickLicenseFile("..\\..\\..\\test\\lcp-client-lib\\data\\moby-dick-20120118.epub\\META-INF\\license.lcpl");
+        std::string path;
+        std::fstream mobyDickLicenseFile("../../../test/lcp-client-lib/data/moby-dick-20120118.epub/META-INF/license.lcpl");
         std::string mobyDickLicenseStr(
             (std::istreambuf_iterator<char>(mobyDickLicenseFile)),
             std::istreambuf_iterator<char>()
             );
 
         lcp::ILicense * rawLicPtr = nullptr;
-        res = lcpService->OpenLicense(mobyDickLicenseStr, &rawLicPtr);
+
+        res = lcpService->OpenLicense(path,mobyDickLicenseStr, &rawLicPtr);
         if (!lcp::Status::IsSuccess(res))
         {
             std::cout << "Status: " << res.Code << "; Extension: " << res.Extension << std::endl;
@@ -186,7 +188,7 @@ int main(int argc, char ** argv)
         }
 
         // One-shot decryption
-        std::fstream encryptedFile("..\\..\\..\\test\\lcp-client-lib\\data\\moby-dick-20120118.epub\\OPS\\chapter_001.xhtml", std::ios::in | std::ios::binary);
+        std::fstream encryptedFile("../../../test/lcp-client-lib/data/moby-dick-20120118.epub/OPS/chapter_001.xhtml", std::ios::in | std::ios::binary);
         std::string encryptedFileStr(
             (std::istreambuf_iterator<char>(encryptedFile)),
             std::istreambuf_iterator<char>()
@@ -213,7 +215,7 @@ int main(int argc, char ** argv)
 
         //Ranged decryption
         std::unique_ptr<lcp::IFile> file(fsProvider.GetFile(
-            "..\\..\\..\\test\\lcp-client-lib\\data\\moby-dick-20120118.epub\\OPS\\chapter_001.xhtml",
+            "../../../test/lcp-client-lib/data/moby-dick-20120118.epub/OPS/chapter_001.xhtml",
             lcp::IFileSystemProvider::ReadOnly)
             );
 
@@ -250,7 +252,7 @@ int main(int argc, char ** argv)
 
 
         lcp::IAcquisition * rawAcqPtr = nullptr;
-        res = lcpService->CreatePublicationAcquisition("..\\..\\..\\src\\testing-data\\result.epub", rawLicPtr, &rawAcqPtr);
+        res = lcpService->CreatePublicationAcquisition("../../../src/testing-data/result.epub", rawLicPtr, &rawAcqPtr);
         std::unique_ptr<lcp::IAcquisition> acquisition(rawAcqPtr);
         if (!lcp::Status::IsSuccess(res))
         {

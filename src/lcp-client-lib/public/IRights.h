@@ -66,6 +66,8 @@ namespace lcp
     // the lifetime of the license.
     static const char * CopyRight = "copy";
 
+    static const char * TtsRight = "tts";
+
     // Date when the license begins.
     static const char * StartRight = "start";
     // Date when the license ends.

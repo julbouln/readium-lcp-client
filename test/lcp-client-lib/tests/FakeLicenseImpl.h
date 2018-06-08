@@ -103,6 +103,12 @@ namespace lcptest
         {
             return false;
         }
+        virtual bool getStatusDocumentProcessingFlag() const {
+            return false;
+        }
+
+        virtual void setStatusDocumentProcessingFlag(bool flag) {
+        }
 
     private:
         lcp::RootInfo m_info;

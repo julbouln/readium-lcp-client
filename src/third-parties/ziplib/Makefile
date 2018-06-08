@@ -3,10 +3,10 @@ EXECUTABLE = Bin/zipsample
 SO_LIBRARY = Bin/libzip.so
 
 # C & C++ compiler
-#CC       = gcc
-#CXX      = g++-4.8
-CC        = clang
-CXX       = clang++
+CC       = gcc
+CXX      = g++
+#CC        = clang
+#CXX       = clang++
 CFLAGS    = -fPIC -Wno-enum-conversion -O3
 CXXFLAGS  = -fPIC -std=c++11 -O3
 
@@ -38,6 +38,7 @@ $(EXECUTABLE): $(OBJS)
 
 $(SO_LIBRARY): $(OBJS)
 	$(CXX) $(LDFLAGS) -shared -o $@ $^
+	ar rcs libzip.a $(OBJS)
 
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@

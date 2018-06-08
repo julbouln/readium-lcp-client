@@ -61,15 +61,16 @@ namespace lcptest
     };
 
     TEST_F(LcpServiceTest, LcpServiceOpen_CheckLicenseParsing)
-    {
-        std::fstream mobyDickLicenseFile("..\\..\\..\\test\\lcp-client-lib\\data\\moby-dick-20120118.epub\\META-INF\\license.lcpl");
+    {        
+        std::fstream mobyDickLicenseFile("../../../test/lcp-client-lib/data/moby-dick-20120118.epub/META-INF/license.lcpl");
+        std::string path;
         std::string mobyDickLicenseStr(
             (std::istreambuf_iterator<char>(mobyDickLicenseFile)),
             std::istreambuf_iterator<char>()
             );
 
         lcp::ILicense * license = nullptr;
-        lcp::Status res = m_lcpService->OpenLicense(mobyDickLicenseStr, &license);
+        lcp::Status res = m_lcpService->OpenLicense(path, mobyDickLicenseStr, &license);
         ASSERT_EQ(lcp::StatusCode::ErrorCommonSuccess, res.Code);
 
 
@@ -118,14 +119,15 @@ namespace lcptest
 
     TEST_F(LcpServiceTest, LcpServiceOpen_DecryptLicense)
     {
-        std::fstream mobyDickLicenseFile("..\\..\\..\\test\\lcp-client-lib\\data\\moby-dick-20120118.epub\\META-INF\\license.lcpl");
+        std::string path;
+        std::fstream mobyDickLicenseFile("../../../test/lcp-client-lib/data/moby-dick-20120118.epub/META-INF/license.lcpl");
         std::string mobyDickLicenseStr(
             (std::istreambuf_iterator<char>(mobyDickLicenseFile)),
             std::istreambuf_iterator<char>()
             );
 
         lcp::ILicense * license = nullptr;
-        lcp::Status res = m_lcpService->OpenLicense(mobyDickLicenseStr, &license);
+        lcp::Status res = m_lcpService->OpenLicense(path, mobyDickLicenseStr, &license);
         ASSERT_EQ(lcp::StatusCode::ErrorCommonSuccess, res.Code);
 
         res = m_lcpService->DecryptLicense(license, "White whales are huge!");

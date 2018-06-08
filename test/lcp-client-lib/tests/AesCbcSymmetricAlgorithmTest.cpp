@@ -41,7 +41,7 @@ namespace lcptest
             m_key.assign(TestContentKey, TestContentKey + sizeof(TestContentKey) / sizeof(TestContentKey[0]));
 
             m_file.reset(
-                m_fsProvider.GetFile("..\\..\\..\\test\\lcp-client-lib\\data\\moby-dick-20120118.epub\\OPS\\chapter_001.xhtml",
+                m_fsProvider.GetFile("../../../test/lcp-client-lib/data/moby-dick-20120118.epub/OPS/chapter_001.xhtml",
                     lcp::IFileSystemProvider::ReadOnly)
                 );
 
@@ -403,7 +403,7 @@ namespace lcptest
         lcp::KeyType key(TestContentKey, TestContentKey + sizeof(TestContentKey) / sizeof(TestContentKey[0]));
         lcp::AesCbcSymmetricAlgorithm aesCbc(key);
 
-        std::fstream encryptedFile("..\\..\\..\\test\\lcp-client-lib\\data\\moby-dick-20120118.epub\\OPS\\chapter_001.xhtml", std::ios::in | std::ios::binary);
+        std::fstream encryptedFile("../../../test/lcp-client-lib/data/moby-dick-20120118.epub/OPS/chapter_001.xhtml", std::ios::in | std::ios::binary);
         std::string encryptedFileStr(
             (std::istreambuf_iterator<char>(encryptedFile)),
             std::istreambuf_iterator<char>()
@@ -420,7 +420,7 @@ namespace lcptest
         decrypted.resize(outSize);
         std::string decryptedStr(decrypted.begin(), decrypted.end());
 
-        std::fstream decryptedFile("..\\..\\..\\test\\lcp-client-lib\\data\\chapter_001_decrypted.xhtml", std::ios::in | std::ios::binary);
+        std::fstream decryptedFile("../../../test/lcp-client-lib/data/chapter_001_decrypted.xhtml", std::ios::in | std::ios::binary);
         std::string decryptedFileStr(
             (std::istreambuf_iterator<char>(decryptedFile)),
             std::istreambuf_iterator<char>()
